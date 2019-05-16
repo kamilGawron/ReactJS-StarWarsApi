@@ -22,7 +22,7 @@ class Navbar extends Component{
         return(
             <header id="header">
                <div className="logo">
-                   <img src={logo} alt=""/>
+                   <Link to="/"><img src={logo} alt=""/></Link>
                </div>
                 <div id="menu-items" className="items">
                     <div onClick={this.phoneMenuHandler} className="close">X</div>

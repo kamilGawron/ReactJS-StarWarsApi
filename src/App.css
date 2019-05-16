@@ -3,6 +3,11 @@
 :root{
     font-size: 10px;
 }
+.preparation{
+    color: rgba(255,255,255,1);
+    text-align: center;
+    font-size: 2.5rem;
+}
 body{
     background: -webkit-gradient(linear,left bottom, left top,from(rgba(0,0,0,.5)),to(rgba(0,0,0,.5))), url("./img/bg.png");
     background: linear-gradient(0deg,rgba(0,0,0,.5),rgba(0,0,0,.5)), url("./img/bg.png");
@@ -38,11 +43,17 @@ header{
 }
 header img{
     height: 70px;
+    cursor: pointer;
 }
 header .items{
+    position: static;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
@@ -80,13 +91,14 @@ header .menu-icon-phone{
 }
 .loader div{
     margin: 0 auto;
-    height: 30px;
-    width: 30px;
-    border: 10px solid rgba(255,255,255,1);
+    margin-top: 20px;
+    height: 50px;
+    width: 50px;
+    border: 5px solid rgba(255,255,255,1);
     border-radius: 50%;
-    border-bottom: 10px solid rgba(252,223,43,1);
-    -webkit-animation: loader 1s infinite;
-    animation: loader .7s infinite ease-in;
+    border-bottom: 5px solid rgba(252,223,43,1);
+    -webkit-animation: loader 1s  infinite ease-in-out;
+    animation: loader 1s infinite ease-in-out;
 }
 @-webkit-keyframes loader{
     0%{-webkit-transform: rotate(0deg);transform: rotate(0deg)}
@@ -127,7 +139,7 @@ header .menu-icon-phone{
 }
 
                     /*home*/
-.home .stormtroopers{
+.stormtroopers{
     bottom: 0;
     position: fixed;
     width: 100%;
@@ -188,17 +200,116 @@ header .menu-icon-phone{
     color: rgba(255,255,255,1);
 
 }
+
 .character h2{
     text-align: center;
     text-transform: uppercase;
     font-size: 3rem;
 }
+.character .content{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+}
+.character .content .left,
+.character .content .right{
+    width: 40%;
+}
+.character .content .left .prop{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-bottom: 10px;
+}
+.character .content .left .prop .title,
+.character .content .right .prop .title{
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+.character .content .left .prop .desc,
+.character .content .right .prop .desc{
+    margin-left: 10px;
+    font-size: 1.6rem;
 
-@media all and (min-width: 1024px) and (max-width: 1280px) { }
+}
+.character .content .right .films .desc{
+    margin-left: 30px;
+}
 
-@media all and (min-width: 768px) and (max-width: 1024px) { }
+
+
+@media all and (min-width: 1024px) and (max-width: 1280px) {
+    
+}
+
+@media all and (min-width: 768px) and (max-width: 1024px) { 
+   
+}
 
 @media all and (min-width: 480px) and (max-width: 768px) { 
+    body{
+        background-image: none;
+
+        background-color: rgba(0,0,0,1);
+    }
+    header{
+        -ms-flex-pack: distribute;
+        justify-content: space-around;
+    }
+    header .items{
+        z-index: 100;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width:100vw;
+        background: -webkit-gradient(linear,left bottom, left top,from(rgba(0,0,0,.7)),to(rgba(0,0,0,.7))), url("./img/bg.png");
+        background: linear-gradient(0deg,rgba(0,0,0,.7),rgba(0,0,0,.7)), url("./img/bg.png");
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+
+    }
+    header .items div{
+        margin: 0;
+        margin-top: 25px;
+    }
+    header .items div a{
+        color: rgba(255,255,255,1);
+        font-size: 3rem;
+    }
+    header .items{
+        display: none;
+    }
+
+    header .items .close{
+        position: absolute;
+        right: 20px;
+        top: 0px;
+        display: block;
+        color: rgba(255,255,255,1);
+        font-size: 3rem;
+    }
+
+    header .menu-icon-phone{
+        display: block;
+    }
+    .peoples input{
+        font-size: 1.6rem;
+    }
+    .stormtroopers{
+        height:40vmin;
+    }
     header img{
         height: 50px;
     }
@@ -208,12 +319,21 @@ header .menu-icon-phone{
     header .items div a{
         font-size: 1.7rem;
     }
-   
+    .padding{
+        
+    }
+    .home h2{
+        margin-top: -40px;
+    }
     
     
 }
 
 @media all and (max-width: 480px) {
+    body{
+        background-image: none;
+        background-color: rgba(0,0,0,1);
+    }
     header{
         -ms-flex-pack: distribute;
         justify-content: space-around
@@ -263,4 +383,18 @@ header .menu-icon-phone{
     .peoples input{
         font-size: 1.6rem;
     }
+    .stormtroopers{
+        height:40vmin;
+    }
+    .character .content{
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+
+    }
+
 }

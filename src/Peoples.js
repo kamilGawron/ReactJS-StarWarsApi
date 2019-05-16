@@ -19,7 +19,6 @@ class Peoples extends Component{
     handleScroll=(e)=>{
         let header = document.getElementById("header");
         header.style.backgroundColor = window.scrollY>50? "rgba(0,0,0,1)":"rgba(0,0,0,.7)"
-        console.log("Scroll",window.scrollY)
         
     }
     showMoreHandler=()=>{
@@ -115,7 +114,7 @@ class Peoples extends Component{
                         {peoplesList.slice(0,this.state.toShow)}
                     </div>
                     {pl.length>this.state.toShow?
-                    <div className="showMore">
+                        <div onClick={this.showMoreHandler} className="showMore">
                         <div onClick={this.showMoreHandler}>Show More</div>
                     </div> : ""}
                 </div>

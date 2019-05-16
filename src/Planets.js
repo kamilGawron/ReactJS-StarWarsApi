@@ -12,7 +12,11 @@ class Planets extends Component{
     render(){
         
         return(
-            <div>Planets</div>
+            <React.Fragment>
+                <div className="preparation">This page is under preparation and will be opened at a later stage.
+                </div>
+                <div className="stormtroopers"></div>
+            </React.Fragment>
         )
        
         

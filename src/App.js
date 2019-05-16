@@ -25,6 +25,7 @@ class App extends Component {
                     <div className="padding"></div>
 
                     <Route exact path="/" component={Home}/>
+                    <Route exact path="/ReactJS-StarWarsApi" component={Home}/>
                     <Route exact path="/planets" component={Planets}/>
                     <Route exact path="/starships" component={Starships}/>
                     <Route exact path="/characters" component={Peoples}/>
