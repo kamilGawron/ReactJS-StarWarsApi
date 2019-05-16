@@ -27,7 +27,6 @@ class Peoples extends Component{
         })
     }
     inputChangeHandler=(e)=>{
-        console.log(e.target.value)
         this.setState({searchName:e.target.value})
     }
     componentDidMount(){

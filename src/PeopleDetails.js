@@ -39,7 +39,6 @@ class PeopleDetails extends Component{
                     fetch(`https://cors-anywhere.herokuapp.com/${self.state.details.films[i]}`)
                         .then(response=>response.json())
                         .then(data=>films=[...films,data.title])
-                        .then(()=>console.log("films",films))
                         .then(()=>{
                             if(films.length==self.state.details.films.length){
                                 resolve(films);
@@ -57,7 +56,6 @@ class PeopleDetails extends Component{
         }
     }
     render(){
-        console.log(this.state.details);
 
         if(this.state.loadDetails&&this.state.loadFilms){
            return(
