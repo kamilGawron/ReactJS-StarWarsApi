@@ -221,11 +221,24 @@ header .menu-icon-phone{
 .character .content .right{
     width: 40%;
 }
+.character .content .left {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+}
 .character .content .left .prop{
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     margin-bottom: 10px;
+    width:200px;
 }
 .character .content .left .prop .title,
 .character .content .right .prop .title{
@@ -330,6 +343,9 @@ header .menu-icon-phone{
 }
 
 @media all and (max-width: 480px) {
+    .preparation{
+        margin-top: 30px;
+    }
     body{
         background-image: none;
         background-color: rgba(0,0,0,1);
@@ -395,6 +411,15 @@ header .menu-icon-phone{
         -ms-flex-align: center;
         align-items: center;
 
+    }
+    .character .content .left,
+    .character .content .right{
+        width: 80%;
+    }
+    .character .content .left{
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+        align-items: flex-start;
     }
 
 }

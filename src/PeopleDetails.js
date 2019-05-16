@@ -99,8 +99,8 @@ class PeopleDetails extends Component{
                        <div className="right">
                            <div className="prop films">
                                <div className="title">Related films:</div>
-                               <div className="desc">{this.state.films.map(function(elem){
-                                       return <div>{elem}</div>
+                               <div className="desc">{this.state.films.map(function(elem,index){
+                                       return <div key={index}>{elem}</div>
                                    })}</div>
                            </div>
                            {/*cond*/}
