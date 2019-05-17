@@ -24,7 +24,7 @@ class PeopleDetails extends Component{
         })
         var self=this;
         let details={},films =[];
-        fetch(`https://cors-anywhere.herokuapp.com/https://swapi.co/api/people/${id}`)
+        fetch(`https://swapi.co/api/people/${id}`)
             .then(response=>response.json())
             .then(data=>{details=data})
             .then(()=>{
@@ -50,7 +50,7 @@ class PeopleDetails extends Component{
 componentDidMount(){
     var self=this;
     let details={},films =[];
-    fetch(`https://cors-anywhere.herokuapp.com/https://swapi.co/api/people/${this.state.id}`)
+    fetch(`https://swapi.co/api/people/${this.state.id}`)
         .then(response=>response.json())
         .then(data=>{details=data})
         .then(()=>{
@@ -74,34 +74,8 @@ componentDidMount(){
     componentWillUpdate(){
     }
     componentWillUnmount(){
-        console.log("unmount")
     }
-    fetchRestOfData=()=>{
-        let self = this;
-        let vehicles=[],starships=[],homeworld="";
-        if(this.state.details.films[0]){
-            var promise = new Promise(function(resolve,reject){
-                let films=[];
-                for(let i=0;i<self.state.details.films.length;i++){
-                    fetch(`${self.state.details.films[i]}`)
-                        .then(response=>response.json())
-                        .then(data=>films=[...films,data.title])
-                        .then(()=>{
-                            if(films.length==self.state.details.films.length){
-                                resolve(films);
-                            }
-                        })
-
-                }
-                
-               
-            })
-           
-            
-            promise.then((data)=>this.setState({films:data,loadFilms:true}))
-            
-        }
-    }
+ 
     render(){
         if(this.state.loadDetails&&this.state.loadFilms){
            return(
@@ -169,10 +143,10 @@ componentDidMount(){
                    </div>
                    <div className="buttons">
                        <Link to={`../${parseInt(this.state.id)-1}/`}>
-                           <div onClick={this.prevNextHandler.bind(this,this.state.id-1)} className="prev">PREV</div>
+                           <div onClick={this.prevNextHandler.bind(this,(parseInt(this.state.id)-1))} className="prev">PREV</div>
                        </Link>
                        <Link to={`../${parseInt(this.state.id)+1}/`}>
-                           <div onClick={this.prevNextHandler.bind(this,this.state.id+1)} className="next">NEXT</div>
+                           <div onClick={this.prevNextHandler.bind(this,(parseInt(this.state.id)+1))} className="next">NEXT</div>
                        </Link>
                    </div>
                    <div className="preparation">This page is still under preparation.</div>

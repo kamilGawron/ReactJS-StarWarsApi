@@ -32,7 +32,7 @@ class Peoples extends Component{
     componentDidMount(){
         window.addEventListener('scroll', this.handleScroll);
         var self = this;
-        fetch(`https://cors-anywhere.herokuapp.com/https://swapi.co/api/people?page=${this.state.page}`)
+        fetch(`https://swapi.co/api/people?page=${this.state.page}`)
         .then(response=>response.json())
         .then(function(data){
             let maxPage = Math.ceil(data.count/10);
@@ -44,7 +44,7 @@ class Peoples extends Component{
         .then(()=>{
             let tmpPeoples=[];
             for(let i=1;i<=this.state.maxPage;i++){
-                fetch(`https://cors-anywhere.herokuapp.com/https://swapi.co/api/people?page=${i}`)
+                fetch(`https://swapi.co/api/people?page=${i}`)
                 .then(response=>response.json())
                 .then(data=>data.results)
                 .then(data=>{
