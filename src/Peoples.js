@@ -62,6 +62,7 @@ class Peoples extends Component{
             }
         })
     }
+
     componentWillUnmount() {
         window.removeEventListener('scroll', this.handleScroll);
     }
@@ -88,10 +89,7 @@ class Peoples extends Component{
                
                     return(
                         <h4 key={index}>
-                            <Link to={{
-                                    pathname:`characters/${elem.id}`
-                                       
-                                }}>
+                            <Link to={`characters/${elem.id}`}>
                                 {elem.name}
                             </Link>
                         </h4>

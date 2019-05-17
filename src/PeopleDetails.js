@@ -1,5 +1,6 @@
 import React, {Component} from "react"
 import Loader from "./Loader"
+import {Link} from "react-router-dom"
 
 class PeopleDetails extends Component{
     constructor(props){
@@ -16,18 +17,64 @@ class PeopleDetails extends Component{
             loadVehicles:false,
             loadStarships:false
         }
-
     }
-    componentWillMount(){
-        fetch(`https://cors-anywhere.herokuapp.com/https://swapi.co/api/people/${this.state.id}`)
+    prevNextHandler=(id)=>{
+        this.setState({loadDetails:false,loadFilms:false,id:id},function(){
+            
+        })
+        var self=this;
+        let details={},films =[];
+        fetch(`https://cors-anywhere.herokuapp.com/https://swapi.co/api/people/${id}`)
+            .then(response=>response.json())
+            .then(data=>{details=data})
+            .then(()=>{
+            for(let i=0;i<details.films.length;i++){
+                fetch(`${details.films[i]}`)
+                    .then(response=>response.json())
+                    .then(data=>films=[...films,data.title])
+                    .then(()=>{
+                    if(details.films.length==films.length){
+                        self.setState({films:films,loadFilms:true})
+                    }
+                })
+            }
+        })
+            .then(()=>this.setState({
+            details:details,
+            films:films,
+            loadDetails:true,
+        }))
+    }
+  
+  
+componentDidMount(){
+    var self=this;
+    let details={},films =[];
+    fetch(`https://cors-anywhere.herokuapp.com/https://swapi.co/api/people/${this.state.id}`)
         .then(response=>response.json())
-        .then(data=>this.setState({details:data,loadDetails:true}))
-        .then(()=>this.fetchRestOfData())
-       
-        
-        
-        
-        
+        .then(data=>{details=data})
+        .then(()=>{
+            for(let i=0;i<details.films.length;i++){
+                fetch(`${details.films[i]}`)
+                    .then(response=>response.json())
+                    .then(data=>films=[...films,data.title])
+                    .then(()=>{
+                    if(details.films.length==films.length){
+                        self.setState({films:films,loadFilms:true})
+                    }
+                })
+            }
+        })
+        .then(()=>this.setState({
+            details:details,
+            films:films,
+            loadDetails:true,
+        }))
+    }
+    componentWillUpdate(){
+    }
+    componentWillUnmount(){
+        console.log("unmount")
     }
     fetchRestOfData=()=>{
         let self = this;
@@ -36,7 +83,7 @@ class PeopleDetails extends Component{
             var promise = new Promise(function(resolve,reject){
                 let films=[];
                 for(let i=0;i<self.state.details.films.length;i++){
-                    fetch(`https://cors-anywhere.herokuapp.com/${self.state.details.films[i]}`)
+                    fetch(`${self.state.details.films[i]}`)
                         .then(response=>response.json())
                         .then(data=>films=[...films,data.title])
                         .then(()=>{
@@ -56,7 +103,6 @@ class PeopleDetails extends Component{
         }
     }
     render(){
-
         if(this.state.loadDetails&&this.state.loadFilms){
            return(
                <div className="character">
@@ -120,6 +166,14 @@ class PeopleDetails extends Component{
                            
                            
                        </div>
+                   </div>
+                   <div className="buttons">
+                       <Link to={`../${parseInt(this.state.id)-1}/`}>
+                           <div onClick={this.prevNextHandler.bind(this,this.state.id-1)} className="prev">PREV</div>
+                       </Link>
+                       <Link to={`../${parseInt(this.state.id)+1}/`}>
+                           <div onClick={this.prevNextHandler.bind(this,this.state.id+1)} className="next">NEXT</div>
+                       </Link>
                    </div>
                    <div className="preparation">This page is still under preparation.</div>
                </div>

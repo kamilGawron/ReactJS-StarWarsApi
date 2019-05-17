@@ -1,3 +1,6 @@
+
+/*https://cors-anywhere.herokuapp.com/*/
+
 import React, {Component} from 'react';
 import './App.css';
 import Peoples from "./Peoples"
