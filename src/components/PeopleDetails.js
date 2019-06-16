@@ -1,6 +1,9 @@
 import React, {Component} from "react"
 import Loader from "./Loader"
 import {Link} from "react-router-dom"
+import {fetchPeoplesDetails} from '../services/fetchData'
+import returnDiff from '../services/returnDiff'
+
 
 class PeopleDetails extends Component{
     constructor(props){
@@ -20,62 +23,43 @@ class PeopleDetails extends Component{
     }
     prevNextHandler=(id)=>{
         this.setState({loadDetails:false,loadFilms:false,id:id},function(){
-            
-        })
-        var self=this;
-        let details={},films =[];
-        fetch(`https://swapi.co/api/people/${id}`)
-            .then(response=>response.json())
-            .then(data=>{details=data})
-            .then(()=>{
-            for(let i=0;i<details.films.length;i++){
-                fetch(`${details.films[i]}`)
-                    .then(response=>response.json())
-                    .then(data=>films=[...films,data.title])
-                    .then(()=>{
-                    if(details.films.length==films.length){
-                        self.setState({films:films,loadFilms:true})
-                    }
+            fetchPeoplesDetails(id).then(data=>{
+                this.setState({
+                    details:data.data,
+                    loadDetails:true,
+                    loadFilms :true,
+                    films:data.films
                 })
-            }
+            });
         })
-            .then(()=>this.setState({
-            details:details,
-            films:films,
-            loadDetails:true,
-        }))
     }
   
-  
-componentDidMount(){
-    var self=this;
-    let details={},films =[];
-    fetch(`https://swapi.co/api/people/${this.state.id}`)
-        .then(response=>response.json())
-        .then(data=>{details=data})
-        .then(()=>{
-            for(let i=0;i<details.films.length;i++){
-                fetch(`${details.films[i]}`)
-                    .then(response=>response.json())
-                    .then(data=>films=[...films,data.title])
-                    .then(()=>{
-                    if(details.films.length==films.length){
-                        self.setState({films:films,loadFilms:true})
-                    }
-                })
-            }
-        })
-        .then(()=>this.setState({
-            details:details,
-            films:films,
-            loadDetails:true,
-        }))
+    componentDidMount(){
+        window.onpopstate = this.onBackButtonEvent;
+        fetchPeoplesDetails(this.state.id).then(data=>{
+            this.setState({
+                details:data.data,
+                loadDetails:true,
+                loadFilms :true,
+                films:data.films
+            })
+        });
+
     }
+    onBackButtonEvent=()=>{
+        this.prevNextHandler(
+            returnDiff(
+                window.location.href,"http://localhost:3000/characters/"
+            ));
+    }
+   
     componentWillUpdate(){
     }
     componentWillUnmount(){
+        window.onpopstate = () => {}
+
     }
- 
+    
     render(){
         if(this.state.loadDetails&&this.state.loadFilms){
            return(
