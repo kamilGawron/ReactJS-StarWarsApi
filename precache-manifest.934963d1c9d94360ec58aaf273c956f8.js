@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "8d94116322a2851fb234feea27a7882c",
+    "revision": "92800ca232c537a89347871aa56a3c6b",
     "url": "/ReactJS-StarWarsApi/index.html"
   },
   {
-    "revision": "d134f5e5492431217b48",
+    "revision": "2d91a292902f8906ba70",
     "url": "/ReactJS-StarWarsApi/static/css/main.d2640ae6.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/ReactJS-StarWarsApi/static/js/2.de5884ca.chunk.js"
   },
   {
-    "revision": "d134f5e5492431217b48",
-    "url": "/ReactJS-StarWarsApi/static/js/main.e8d033ec.chunk.js"
+    "revision": "2d91a292902f8906ba70",
+    "url": "/ReactJS-StarWarsApi/static/js/main.f6e397bf.chunk.js"
   },
   {
     "revision": "e64ff3bd5a986ee4666b",
